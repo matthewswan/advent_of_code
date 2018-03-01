@@ -7,17 +7,21 @@ import (
 )
 
 func main() {
-	var sum int
 	numString := "123123"
-	subString1, subString2 := numString[:(len(numString)/2)], numString[(len(numString)/2):]
+	total := sumHalfWay(numString)
+	fmt.Printf("Sum: %d\n", total)
+}
+
+func sumHalfWay(str string) int {
+	var sum int
+	subString1, subString2 := str[:(len(str)/2)], str[(len(str)/2):]
 	for i, _ := range subString1 {
 		if num1, num2 := convertStringToInt(string(subString1[i])), convertStringToInt(string(subString2[i])); num1 == num2 {
 			sum += num1 + num2
 		}
 	}
-	fmt.Printf("Sum: %d\n", sum)
+	return sum
 }
-
 func convertStringToInt(str string) int {
 	returnInt, err := strconv.Atoi(str)
 	if err != nil {
