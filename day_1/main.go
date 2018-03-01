@@ -8,18 +8,25 @@ import (
 
 func main() {
 	numString := "91212129"
+	total := sumNext(numString)
+	fmt.Printf("Sum: %d\n", total)
+}
+
+func sumNext(str string) int {
 	var sum int
-	lastInt := convertStringToInt(string(numString[(len(numString) - 1)]))
-	for i := 0; i < len(numString)-1; i++ {
-		currentInt := convertStringToInt(string(numString[i]))
-		nextInt := convertStringToInt(string(numString[i+1]))
-		if i == 0 && currentInt == lastInt {
-			sum = currentInt
-		} else if currentInt == nextInt {
+	lastInt := convertStringToInt(string(str[(len(str) - 1)]))
+	firstInt := convertStringToInt(string(str[0]))
+	if firstInt == lastInt {
+		sum = firstInt
+	}
+	for i := 0; i < len(str)-1; i++ {
+		currentInt := convertStringToInt(string(str[i]))
+		nextInt := convertStringToInt(string(str[i+1]))
+		if currentInt == nextInt {
 			sum += currentInt
 		}
 	}
-	fmt.Printf("Sum: %d\n", sum)
+	return sum
 }
 
 func convertStringToInt(str string) int {
